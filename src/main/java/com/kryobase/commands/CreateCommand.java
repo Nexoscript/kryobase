@@ -10,6 +10,7 @@ public class CreateCommand implements KryoCmd {
             switch (args[1].toUpperCase()) {
                 case "DB" -> {
                     KryoBase.getInstance().getLogger().logLn("Create DB");
+                    KryoBase.getInstance().getKryoBaseManager().createDatabase(args[2]);
                 }
                 case "COLLECTION" -> {
                     KryoBase.getInstance().getLogger().logLn("Create COLLECTION");
@@ -19,6 +20,11 @@ public class CreateCommand implements KryoCmd {
                 }
                 case "USER" -> {
                     KryoBase.getInstance().getLogger().logLn("Create USER");
+                    KryoBase.getInstance().getKryoBaseManager().createUser(
+                            args[2],
+                            args[3],
+                            args[4].split(":")
+                    );
                 }
             }
         } else {

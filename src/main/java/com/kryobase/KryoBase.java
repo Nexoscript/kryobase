@@ -3,9 +3,13 @@ package com.kryobase;
 import com.kryobase.commands.CreateCommand;
 import com.kryobase.commands.ExitCommand;
 import com.kryobase.commands.HelpCommand;
-import com.kryobase.web.WebServer;
+import com.kryobase.config.MainConfig;
+import com.kryobase.database.KryoBaseManager;
+import de.eztxm.ezlib.config.object.JsonUtil;
+import de.eztxm.ezlib.config.reflect.JsonProcessor;
+import io.javalin.Javalin;
+import lombok.Getter;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -13,14 +17,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+@Getter
 public class KryoBase {
     private static KryoBase INSTANCE;
     private KryoLogger logger;
     private Thread databaseThread;
     private String kryoBasePrompt = "kryoBase>>";
-    private String databasePath = "kryoBase";
+    private String databasePath;
     private List<KryoCmd> commands;
-    private WebServer webServer;
+    private Javalin webServer;
+    private MainConfig config;
+    private KryoBaseManager kryoBaseManager;
 
     private void loadCommands() {
         this.commands.add(new HelpCommand());
@@ -47,6 +54,21 @@ public class KryoBase {
         this.logger.logLn("#                                           #");
         this.logger.logLn("#############################################");
 
+        JsonUtil.prettyPrint = true;
+
+        if(!Files.exists(Path.of("config.json"))) {
+            JsonProcessor<MainConfig> processor = JsonProcessor.loadConfiguration(MainConfig.class);
+            MainConfig config = processor.getInstance();
+            config.setPath("kryobase");
+            config.setPort(8000);
+            processor.saveConfiguration();
+            this.logger.logLn("Config Created!");
+        }
+        JsonProcessor<MainConfig> processor = JsonProcessor.loadConfiguration(MainConfig.class);
+        this.config = processor.getInstance();
+        this.databasePath = this.config.getPath();
+        this.logger.logLn("Config Loaded!");
+
         if(!Files.exists(Path.of(databasePath))) {
             try {
                 Files.createDirectories(Path.of(databasePath));
@@ -59,10 +81,15 @@ public class KryoBase {
         this.loadCommands();
         this.logger.logLn("Commands Loaded!");
 
-        this.webServer = new WebServer();
+        this.kryoBaseManager = new KryoBaseManager();
+        this.logger.logLn("KryoBase Manager Initialized!");
+
+        this.webServer = Javalin.create(config -> {
+            config.showJavalinBanner = false;
+        });
         loadRequests();
-        this.webServer.start();
-        this.logger.logLn("WebServer started on https://127.0.0.1:" + webServer.getPort() + "/");
+        this.webServer.start(this.config.getPort());
+        this.logger.logLn("WebServer started on https://127.0.0.1:" + webServer.port() + "/");
 
         Scanner scanner = new Scanner(System.in);
         this.logger.log(this.kryoBasePrompt);
@@ -95,23 +122,4 @@ public class KryoBase {
         return INSTANCE;
     }
 
-    public List<KryoCmd> getCommands() {
-        return commands;
-    }
-
-    public String getKryoBasePrompt() {
-        return kryoBasePrompt;
-    }
-
-    public String getDatabasePath() {
-        return databasePath;
-    }
-
-    public Thread getDatabaseThread() {
-        return databaseThread;
-    }
-
-    public KryoLogger getLogger() {
-        return logger;
-    }
 }

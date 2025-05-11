@@ -1,0 +1,4 @@
+{
+        "database.path": "kryoBase",
+        "database.port": 8000
+}
