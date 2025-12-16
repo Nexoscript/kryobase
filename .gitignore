@@ -1,0 +1,39 @@
+# ========================
+# Visual Studio Code
+# ========================
+.vscode/
+.history/
+*.code-workspace
+
+# ========================
+# JetBrains IDEs (IntelliJ, PyCharm, etc.)
+# ========================
+.idea/
+*.iml
+*.iws
+out/
+target/
+
+# ========================
+# Java
+# ========================
+*.class
+*.jar
+*.war
+*.ear
+*.log
+*.tmp
+*.bak
+*.swp
+
+# ========================
+# Maven
+# ========================
+/target/
+/pom.xml.tag
+/pom.xml.releaseBackup
+/pom.xml.versionsBackup
+/logs/
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
