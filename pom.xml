@@ -11,11 +11,8 @@
     <packaging>pom</packaging>
     <modules>
         <module>kryobase-api</module>
-        <module>kryobase-base</module>
         <module>kryobase-common</module>
         <module>kryobase-database</module>
-        <module>kryobase-authentication</module>
-        <module>kryobase-rest</module>
         <module>kryobase-server</module>
     </modules>
 

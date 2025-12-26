@@ -20,7 +20,7 @@
     <dependencies>
         <dependency>
             <groupId>${project.parent.groupId}</groupId>
-            <artifactId>kryobase-base</artifactId>
+            <artifactId>kryobase-api</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
     </dependencies>
