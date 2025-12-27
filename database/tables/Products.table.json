@@ -1,0 +1,29 @@
+{
+  "schema": {
+    "name": "Products",
+    "version": 1
+  },
+  "rows": [
+    {
+      "values": {
+        "price": 59.99,
+        "id": "50f56dd6-368c-4eaa-b04a-3e6f977ea1fa",
+        "title": "Gaming Maus"
+      }
+    },
+    {
+      "values": {
+        "price": 59.99,
+        "id": "e67285a9-933e-4260-9662-9c5ddbf78994",
+        "title": "Gaming Headset"
+      }
+    },
+    {
+      "values": {
+        "price": 59.99,
+        "id": "151c50e3-4488-44fb-8da2-7612561f5d5f",
+        "title": "Gaming Microphone"
+      }
+    }
+  ]
+}
