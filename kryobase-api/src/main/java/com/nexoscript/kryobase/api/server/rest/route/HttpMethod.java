@@ -1,4 +1,4 @@
-﻿package com.nexoscript.kryobase.api.server.rest.route;
+package com.nexoscript.kryobase.api.server.rest.route;
 
 public enum HttpMethod {
     GET,

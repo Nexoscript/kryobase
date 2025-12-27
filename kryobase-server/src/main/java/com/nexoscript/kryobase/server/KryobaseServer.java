@@ -8,17 +8,19 @@ public class KryobaseServer implements IKryobaseServer {
 	private RouteHandler routeHandler;
 
 	public KryobaseServer() {
+		this.routeHandler = new RouteHandler();
+		System.setProperty("org.slf4j.simpleLogger.log.io.javalin", "error");
+		System.setProperty("org.slf4j.simpleLogger.log.org.eclipse.jetty", "error");
 		this.server = Javalin.create(config -> {
 			config.showJavalinBanner = false;
 		});
-		this.routeHandler = new RouteHandler();
-		this.routeHandler.handleRoutes(this.server);
 	}
 
 	@Override
 	public void start(String hostname, int port) {
+		this.routeHandler.handleRoutes(this.server);
 		this.server.start(hostname, port);
-		System.out.println("Server started on " + hostname + ":" + port);
+		System.out.println("Server started on http://" + hostname + ":" + port + "/");
 	}
 
 	@Override

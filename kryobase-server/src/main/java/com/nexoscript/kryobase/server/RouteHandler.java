@@ -1,4 +1,4 @@
-﻿package com.nexoscript.kryobase.server;
+package com.nexoscript.kryobase.server;
 
 import com.nexoscript.kryobase.api.server.rest.route.IRoute;
 import com.nexoscript.kryobase.api.server.rest.route.IRouteHandler;
