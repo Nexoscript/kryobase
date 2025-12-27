@@ -1,28 +1,26 @@
 {
   "schema": {
     "name": "Products",
-    "version": 1
+    "version": 1,
+    "definitions": [
+      {
+        "name": "name",
+        "type": "STRING",
+        "primaryKey": false
+      },
+      {
+        "name": "version",
+        "type": "INT",
+        "primaryKey": false
+      }
+    ]
   },
   "rows": [
     {
       "values": {
-        "price": 59.99,
-        "id": "50f56dd6-368c-4eaa-b04a-3e6f977ea1fa",
-        "title": "Gaming Maus"
-      }
-    },
-    {
-      "values": {
-        "price": 59.99,
-        "id": "e67285a9-933e-4260-9662-9c5ddbf78994",
-        "title": "Gaming Headset"
-      }
-    },
-    {
-      "values": {
-        "price": 59.99,
-        "id": "151c50e3-4488-44fb-8da2-7612561f5d5f",
-        "title": "Gaming Microphone"
+        "name": "Apple Macbook",
+        "id": "f3f774a7-0b11-4c01-8cc2-bfd9295fe710",
+        "version": 120.0
       }
     }
   ]

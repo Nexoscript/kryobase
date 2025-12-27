@@ -1,0 +1,21 @@
+{
+  "name": "User",
+  "version": 1,
+  "definitions": [
+    {
+      "name": "id",
+      "type": "UUID",
+      "primaryKey": false
+    },
+    {
+      "name": "username",
+      "type": "STRING",
+      "primaryKey": false
+    },
+    {
+      "name": "password",
+      "type": "STRING",
+      "primaryKey": false
+    }
+  ]
+}

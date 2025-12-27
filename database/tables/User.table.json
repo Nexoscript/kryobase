@@ -1,0 +1,32 @@
+{
+  "schema": {
+    "name": "User",
+    "version": 1,
+    "definitions": [
+      {
+        "name": "id",
+        "type": "UUID",
+        "primaryKey": false
+      },
+      {
+        "name": "username",
+        "type": "STRING",
+        "primaryKey": false
+      },
+      {
+        "name": "password",
+        "type": "STRING",
+        "primaryKey": false
+      }
+    ]
+  },
+  "rows": [
+    {
+      "values": {
+        "password": "test123",
+        "id": "1de954ab-34e4-45d5-b695-907007debb54",
+        "username": "Tom"
+      }
+    }
+  ]
+}

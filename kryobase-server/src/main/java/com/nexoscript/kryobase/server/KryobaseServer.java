@@ -3,6 +3,7 @@ package com.nexoscript.kryobase.server;
 import com.nexoscript.kryobase.api.server.IKryobaseServer;
 import com.nexoscript.kryobase.api.server.rest.route.IRouteHandler;
 import io.javalin.Javalin;
+import io.javalin.plugin.bundled.CorsPluginConfig;
 
 public class KryobaseServer implements IKryobaseServer {
 	private Javalin server;
@@ -14,6 +15,9 @@ public class KryobaseServer implements IKryobaseServer {
 		System.setProperty("org.slf4j.simpleLogger.log.org.eclipse.jetty", "error");
 		this.server = Javalin.create(config -> {
 			config.showJavalinBanner = false;
+			config.bundledPlugins.enableCors(cors -> {
+				cors.addRule(CorsPluginConfig.CorsRule::anyHost);
+			});
 		});
 	}
 

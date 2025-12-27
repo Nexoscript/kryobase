@@ -1,4 +1,16 @@
 {
   "name": "Products",
-  "version": 1
+  "version": 1,
+  "definitions": [
+    {
+      "name": "name",
+      "type": "STRING",
+      "primaryKey": false
+    },
+    {
+      "name": "version",
+      "type": "INT",
+      "primaryKey": false
+    }
+  ]
 }
